@@ -1,0 +1,22 @@
+{
+  "name": "typerskitchen",
+  "version": "1.0.0",
+  "description": "typinggame",
+  "main": "cheftype_service.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uacs337spring2019/final-project-lexi-g-josh-s.git"
+  },
+  "keywords": [
+    "typing"
+  ],
+  "author": "Lexi Garrabrant Joshua Silverio",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/uacs337spring2019/final-project-lexi-g-josh-s/issues"
+  },
+  "homepage": "https://github.com/uacs337spring2019/final-project-lexi-g-josh-s#readme"
+}
