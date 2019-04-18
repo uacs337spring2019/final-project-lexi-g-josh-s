@@ -1,0 +1,55 @@
+<!--
+Joshua Silverio
+CSc 337
+Homework 8
+Description: Html code for webpage called Chattit:NBA that lets the user
+comment/view comments about the NBA.
+-->
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<script src="cheftype.js"></script>
+		<link rel="stylesheet" type="text/css" href="cheftype.css">
+		<title>Typer's Kitchen</title>
+	</head>
+	<body>
+		<h1>Typer's Kitchen</h1>
+		<div id="logincontainer">
+	    <div id="loginbar">
+				<button id="loginbutton" name="button">Login</button>
+				<button id="signbutton" name="button">Register</button>
+	    </div>
+		</div>
+		<div id="login">
+			<label>Initials: <input type="text" id="username" /></label>
+			<label>Password: <input type="password" id="password" /></label>
+		</div>
+		<div id=playfieldcontainer class="hidden">
+			<div id="container" class="hidden">
+		    <div id="playingfield" class="hidden">
+		      <canvas id="canvas" width="700" height="400"></canvas>
+				</div>
+				<div id="stats">
+					<h2>LIVES</h2>
+					<div id="lives" class="hidden">
+					</div>
+					<h2>SCORE</h2>
+					<div id="currentscore" class="hidden">
+					</div>
+		    <div id="highscores" class="hidden">
+		    </div>
+			</div>
+		</div>
+			<div id="typing" class="hidden">
+				<input type="text" id="userword"/>
+				<button type="button" id="startbutton">Start</button>
+			</div>
+		</div>
+		<iframe src="audio/silence.mp3" allow="autoplay" id="audio"
+		style="display:none">
+		</iframe>
+		<audio autoplay loop>
+      <source src="audio/flower.mp3">
+		</audio>
+	</body>
+</html>
