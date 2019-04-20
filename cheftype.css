@@ -4,16 +4,21 @@ Joshua Silverio
 HW7 CSc337
 ***/
 body{
-  background-color: lightgrey;
+  background-color: rgb(78, 75, 78);
   text-align: center;
-  font-family: monospace;
-  color: black;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 12pt;
+  color: white;
 }
 h1{
   font-size: 56pt;
 }
-canvas{
-  background-color: white;
+h2{
+  font-size: 18pt;
+}
+canvas,#typing input{
+  background-color: rgb(78, 75, 78);
+  color: white;
 }
 
 #playfieldcontainer, #top{
@@ -27,7 +32,6 @@ canvas{
   font-size: 22pt;
 }
 #typing{
-  width: 914px;
   text-align: center;
 }
 #container,#typing{
@@ -37,12 +41,14 @@ canvas{
 #container{
   display: flex;
 }
-#logincontainer{
-  margin-top: 15%;
+button{
+  color: white;
+  border-radius: 4px;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+  background-color: rgb(105, 167, 173);
 }
 #loginbar{
   transition: opacity 1s;
-
 }
 #login{
   display: flex;
@@ -71,4 +77,24 @@ canvas{
 }
 .hidden{
   visibility: hidden;
+  width: 0px;
+}
+#sounddiv{
+  display: flex;
+  flex-direction: column;
+  float: left;
+}
+#sound,#sounddiv p{
+  margin: 5px;
+  font-size: 4pt;
+}
+#highscores{
+  color: white;
+  font-size: 12pt;
+  border: dashed 3px yellow;
+  padding: 3px;
+  margin-right: 10px;
+}
+#userword{
+  disabled = disabled;
 }

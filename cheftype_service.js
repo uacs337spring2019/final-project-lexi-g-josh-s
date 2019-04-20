@@ -1,9 +1,9 @@
-// Joshua SIlverio
+// Joshua SIlverio/Lexi Garrabrant
 // CSC 337, Spring 2019
-// HW7
+// Typer's Kitchen
 
-// this web service requires a mode/title parameter
-// it provides various info about different books
+// this web service requires a mode psarameter
+// it provides various info about the game's past plays
 "use strict";
 const express = require("express");
 const app = express();
@@ -59,9 +59,7 @@ app.get('/', function (req, res) {
    let lines = dictFile.split("\n");
    for(let i=0; i<lines.length; i++){
      wordJson = {};
-     //let splitLine = lines[i].split(":::");
      wordJson["word"] = lines[i];
-     //wordJson["definition"] = splitLine[1];
      wordList[i] = wordJson;
    }
    wordJson = {};
@@ -75,7 +73,6 @@ const jsonParser = bodyParser.json();
 app.post('/', jsonParser, function (req, res) {
 	res.header("Access-Control-Allow-Origin", "*");
 	let name = req.body.name;
-  console.log(req.body.password);
   if(req.body.password != null){
 	let password = req.body.password;
 	fs.appendFile("files/users.txt", "\n"+ name + ":::"+password, function(err) {
