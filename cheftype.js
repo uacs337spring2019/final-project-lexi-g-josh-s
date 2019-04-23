@@ -269,7 +269,9 @@ learn how to type in a fun way.
           fetch(scoreUrl)
           .then(checkStatus)
           .then(function(responseText) {
+            console.log(responseText);
             let json = JSON.parse(responseText);
+            console.log(json);
             let scoreDiv = document.getElementById("highscores");
             let title = document.createElement("h2");
             scoreDiv.innerHTML = "";
