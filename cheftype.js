@@ -119,7 +119,7 @@ learn how to type in a fun way.
               reloadScore();
             }
           }       else if(event.srcElement.id == "password"){//user is loggingin
-            let userUrl = "http://localhost:3000/?mode=users";
+            let userUrl = "https://typers-kitchen.herokuapp.com//?mode=users";
             let username = document.getElementById("username").value;
             if(username.length !=3){
               alert("Please Enter 3 Inittials");//wrong input
@@ -250,7 +250,7 @@ learn how to type in a fun way.
         /*** fillWords forgetting the words from the webservice***/
         function fillWords() {
           unusedWords = [];
-          let dictUrl = "http://localhost:3000/?mode=dictionary";
+          let dictUrl = "https://typers-kitchen.herokuapp.com/?mode=dictionary";
           fetch(dictUrl)//book url request
           .then(checkStatus)
           .then(function(responseText) {
@@ -265,7 +265,7 @@ learn how to type in a fun way.
         }
         /*** laodScores for getting old scores from service***/
         function loadScores() {
-          let scoreUrl = "http://localhost:3000/?mode=scores";
+          let scoreUrl = "https://typers-kitchen.herokuapp.com/?mode=scores";
           fetch(scoreUrl)
           .then(checkStatus)
           .then(function(responseText) {
@@ -337,7 +337,7 @@ learn how to type in a fun way.
             },
             body : JSON.stringify(message)
           };
-          let url = "http://localhost:3000";
+          let url = "https://typers-kitchen.herokuapp.com/";
           fetch(url, fetchOptions)
           .then(checkStatus)
           .then(function(responseText) {
@@ -372,7 +372,7 @@ learn how to type in a fun way.
             },
             body : JSON.stringify(message)
           };
-          let url = "http://localhost:3000";
+          let url = "https://typers-kitchen.herokuapp.com/";
           fetch(url, fetchOptions)
           .then(checkStatus)
           .then(function(responseText) {
