@@ -94,6 +94,8 @@ button{
   border: dashed 3px yellow;
   padding: 3px;
   margin-right: 10px;
+  margin: auto;
+
 }
 #userword{
   disabled = disabled;

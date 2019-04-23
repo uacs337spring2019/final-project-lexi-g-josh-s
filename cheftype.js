@@ -268,7 +268,6 @@ CSC 337 - Final Project
             scoreDiv.appendChild(title);
 
             let scoreP = document.createElement("p");
-            scoreP.innerHTML = "Name...........Score";
             scoreDiv.appendChild(scoreP);
 
             let highs = [parseInt(json.scores[0].score)];
