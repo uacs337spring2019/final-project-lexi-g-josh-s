@@ -11,6 +11,7 @@ const app = express();
 const fs = require("fs");
 
 app.use(express.static('public'));
+app.use(express.static(__dirname));
 console.log('web service started');
 app.use(function(req, res, next) {//for posts
    res.header("Access-Control-Allow-Origin", "*");
