@@ -337,7 +337,7 @@ learn how to type in a fun way.
             },
             body : JSON.stringify(message)
           };
-          let url = "https://typers-kitchen.herokuapp.com";
+          let url = "https://typers-kitchen.herokuapp.com/?mode=post";
           fetch(url, fetchOptions)
           .then(checkStatus)
           .then(function(responseText) {
@@ -372,7 +372,7 @@ learn how to type in a fun way.
             },
             body : JSON.stringify(message)
           };
-          let url = "https://typers-kitchen.herokuapp.com";
+          let url = "https://typers-kitchen.herokuapp.com/?mode=post";
           fetch(url, fetchOptions)
           .then(checkStatus)
           .then(function(responseText) {
