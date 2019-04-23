@@ -18,7 +18,7 @@ app.use(function(req, res, next) {//for posts
               "Origin, X-Requested-With, Content-Type, Accept");
 	next();
 });
-app.get('/', function (req, res) {
+app.get('/?mode=', function (req, res) {
 	res.header("Access-Control-Allow-Origin", "*");
 	let mode = req.query.mode;
  let scoreList = [];
