@@ -1,10 +1,13 @@
 /***
-Lexi Garrabrant
-Joshua Silverio
-CSC 337 - Final Project
+Joshua Silverio Lexi Garrabrant
+CSc 337
+Final Project
+Description: js code for webpage called Typer's Kitchen that lets the user
+learn how to type in a fun way.
 ***/
-"use strict";
+
 (function() {
+  "use strict";
   let unusedWords = [];
   let validWords = [];
   let currImg = [];
@@ -18,7 +21,6 @@ CSC 337 - Final Project
   let currScore = 0;
   let level = 0;
   let lives = 3;
-
   /*** on load for browser opening***/
   window.onload = function() {
     loadScores();
@@ -30,31 +32,35 @@ CSC 337 - Final Project
     document.getElementById("startbutton").onclick = start;
     document.getElementById("sound").onclick = sound;
   };
+  /*** sound function for changing soundtracks ***/
   function sound(){
     let song = document.getElementById("currentsong").innerHTML
     .split("<br><br>")[1];
     console.log(song);
-    switch(song){
+    switch(song){//switch the song
       case "Sunflower":
-      document.getElementById("songchoice").src = "audio/kirby.mp3";
-      document.getElementById("currentsong").innerHTML =
-      "Currently Playing: <br><br>Kirby DreamLand";
-      break;
+        document.getElementById("songchoice").src = "audio/kirby.mp3";
+        document.getElementById("currentsong").innerHTML =
+        "Currently Playing: <br><br>Kirby DreamLand";
+        break;
       case "Kirby DreamLand":
-      document.getElementById("songchoice").src = "audio/silence.mp3";
-      document.getElementById("currentsong").innerHTML =
-      "Currently Playing: <br><br>Nothing";
-      break
+        document.getElementById("songchoice").src = "audio/silence.mp3";
+        document.getElementById("currentsong").innerHTML =
+        "Currently Playing: <br><br>Nothing";
+        break;
       case "Nothing":
-      document.getElementById("songchoice").src = "audio/flower.mp3";
-      document.getElementById("currentsong").innerHTML =
-      "Currently Playing: <br><br>Sunflower";
+        document.getElementById("songchoice").src = "audio/flower.mp3";
+        document.getElementById("currentsong").innerHTML =
+        "Currently Playing: <br><br>Sunflower";
       break;
     }
   }
+  /*** login function to handle signing in or registering
+  @param{event} event
+  handler for login***/
   function login(event){
     switch(event.srcElement.id){
-      case "loginbutton":
+      case "loginbutton"://logging back in
       if(document.getElementById("login") !=null){
         document.getElementById("login").id = "loginclick";
         document.getElementById("loginbar").style.opacity = "0";
@@ -62,7 +68,7 @@ CSC 337 - Final Project
         currScore = -1;
       }
       break;
-      case "signbutton":
+      case "signbutton"://registerign a new account
       if(document.getElementById("login")!= null){
         document.getElementById("login").id = "loginclick";
         document.getElementById("loginbar").style.opacity = "0";
@@ -71,17 +77,20 @@ CSC 337 - Final Project
       break;
     }
   }
+  /*** enterHit function for when user hits the enter key
+  @param{event} event
+  handler for enterHit***/
   function enterHit(event){
     let flg = 0;
     let song = document.getElementById("currentsong").innerHTML
     .split("<br><br>")[1];
-    if(event.code == "Enter"){
-      if(event.srcElement.id =="userword"){
+    if(event.code == "Enter"){//make sure it was an enter hit
+      if(event.srcElement.id =="userword"){//user is tryign to type a word
         let userWord = document.getElementById("userword");
         for(let i = 0; i <validWords.length; i++){
           if(userWord.value == validWords[i]){
             if(song != "Nothing"){
-              let audio = new Audio("audio/correct.mp3");
+              let audio = new Audio("audio/correct.mp3");//correct
               audio.play();
             }
             flg = 1;
@@ -97,22 +106,23 @@ CSC 337 - Final Project
             }
           }
           if (flg == 0) {
-            userword.value = "";
+            let userWord = document.getElementById("userword");
+            userWord.value = "";//wrong
             if(song!="Nothing"){
               let audio = new Audio("audio/Plate.mp3");
               audio.play();
             }
-            userword.style.backgroundColor = "red";
-            setTimeout(function(){userword.style.backgroundColor =
+            userWord.style.backgroundColor = "red";
+            setTimeout(function(){userWord.style.backgroundColor =
               "rgb(78, 75, 78)";}, 75);
               currScore--;
               reloadScore();
             }
-          }       else if(event.srcElement.id == "password"){
+          }       else if(event.srcElement.id == "password"){//user is loggingin
             let userUrl = "http://localhost:3000/?mode=users";
             let username = document.getElementById("username").value;
             if(username.length !=3){
-              alert("Please Enter 3 Inittials")
+              alert("Please Enter 3 Inittials");//wrong input
             }
             else{
               let password = document.getElementById("password").value;
@@ -122,9 +132,9 @@ CSC 337 - Final Project
               .then(function(responseText) {
                 let json = JSON.parse(responseText);
                 if(currScore == -1){
-                  for(let i = 0; i <json["users"].length;i++){
+                  for(let i=0; i<json["users"].length; i++){
                     if(json["users"][i].name.toUpperCase() == username.toUpperCase()
-                    && json["users"][i].password == password){
+                    && json["users"][i].password == password){//post new user
                       f = 1;
                       user = username.toUpperCase();
                       showPlay();
@@ -144,7 +154,7 @@ CSC 337 - Final Project
           }
         }
       }
-
+      /*** reloadScore for reloading user score every enter hit***/
       function reloadScore(){
         if(currScore > 100 && level == 0) {
           clearInterval(timer);
@@ -153,7 +163,7 @@ CSC 337 - Final Project
           timer = setInterval(moveWord,50);
           level = 1;
         }
-        if(currScore > 200 && level == 1) {
+        if(currScore > 200 && level == 1) {//increase speed
           clearInterval(timer);
           clearInterval(timer2);
           timer2 = setInterval(addWord,1000);
@@ -162,7 +172,7 @@ CSC 337 - Final Project
         }
         document.getElementById("currentscore").innerHTML = currScore;
       }
-
+      /*** reloadLives for reloading knife when user loses life***/
       function reloadLives(){
         document.getElementById("lives").innerHTML = "";
         let j;
@@ -175,38 +185,37 @@ CSC 337 - Final Project
           '<img src="images/deathknife.png" />';
         }
       }
-
+      /*** start for when user wants to start playing***/
       function start(){
         currScore = 0;
         lives = 3;
-        level = 0;
+        level = 0;//reset lives/score/lvl
         reloadScore();
         reloadLives();
-        var canvas = document.getElementById("canvas");
-        var context = canvas.getContext("2d");
+        let canvas = document.getElementById("canvas");
+        let context = canvas.getContext("2d");
         context.font = "30px Arial";
         document.getElementById("userword").disabled = false;
         document.getElementById("userword").focus();
         document.getElementById("startbutton").disabled = true;
         timer2 = setInterval(addWord,2000);
-        timer = setInterval(moveWord,100);
+        timer = setInterval(moveWord,100);//start the game
       }
-
+      /*** addWord for adding a new word to the screen***/
       function addWord(){
-        var canvas = document.getElementById("canvas");
-        var context = canvas.getContext("2d");
-
-        var num = Math.floor(Math.random() * unusedWords.length);
+        let canvas = document.getElementById("canvas");
+        let context = canvas.getContext("2d");
+        let num = Math.floor(Math.random() * unusedWords.length);
         while(validWords.includes(unusedWords[num])) {
-          num = Math.floor(Math.random() * unusedWords.length);
+          num = Math.floor(Math.random() * unusedWords.length);//random num
         }
         validWords.push( unusedWords[num] );
-        unusedWords.splice(num, 1);
+        unusedWords.splice(num, 1);//add to the list
         if(unusedWords.length == 0) { fillWords(); }
 
         yPos[validWords[validWords.length-1]] = 0;
-        let temp = 50 + Math.floor(Math.random() * 600)
-        xPos[validWords[validWords.length-1]] = temp;
+        let temp = 50 + Math.floor(Math.random() * 600);
+        xPos[validWords[validWords.length-1]] = temp;//set initial positions
         let img = new Image();
         let x = Math.floor(Math.random() * validPicture.length);
         img.src =  validPicture[x];
@@ -215,22 +224,22 @@ CSC 337 - Final Project
         context.fillText(validWords[validWords.length],
           xPos[validWords[validWords.length]],
           yPos[validWords[validWords.length]]);
-          currImg[validWords.length-1] = img;
+          currImg[validWords.length-1] = img;//add it to the canvas
         }
-
+        /*** moveWord for moving word down the canvas***/
         function moveWord(){
-          var canvas = document.getElementById("canvas");
-          var context = canvas.getContext("2d");
+          let canvas = document.getElementById("canvas");
+          let context = canvas.getContext("2d");
           context.clearRect(0, 0, canvas.width, canvas.height);
-          for(let i=validWords.length-1; i>=0;i--){
-            yPos[validWords[i]] += 1;
+          for(let i=validWords.length-1; i>=0; i--){
+            yPos[validWords[i]] += 1;//old position +1
             let img = currImg[i];
             context.drawImage(img,xPos[validWords[i]]-50, yPos[validWords[i]]-25);
             context.fillStyle = "#000000";
             context.fillText(validWords[i],xPos[validWords[i]],yPos[validWords[i]]);
 
             if(yPos[validWords[i]] == 425) {
-              validWords.splice(i,1);
+              validWords.splice(i,1);//word made it to the bottom of the screen
               currImg.splice(i,1);
               lives--;
               reloadLives();
@@ -238,7 +247,7 @@ CSC 337 - Final Project
             }
           }
         }
-
+        /*** fillWords forgetting the words from the webservice***/
         function fillWords() {
           unusedWords = [];
           let dictUrl = "http://localhost:3000/?mode=dictionary";
@@ -254,7 +263,7 @@ CSC 337 - Final Project
             console.log(error);
           });
         }
-
+        /*** laodScores for getting old scores from service***/
         function loadScores() {
           let scoreUrl = "http://localhost:3000/?mode=scores";
           fetch(scoreUrl)
@@ -266,17 +275,14 @@ CSC 337 - Final Project
             scoreDiv.innerHTML = "";
             title.innerHTML = "HIGHSCORES";
             scoreDiv.appendChild(title);
-
             let scoreP = document.createElement("p");
             scoreDiv.appendChild(scoreP);
-
             let highs = [parseInt(json.scores[0].score)];
             let names = [json.scores[0].name];
-
             let flg = 0;
             for(let i = 1; i < json.scores.length; i++){
               flg = 0;
-              for(let j = 0; j < highs.length; j++) {
+              for(let j = 0; j < highs.length; j++) {//find top 5 scores
                 if(parseInt(json.scores[i].score) > highs[j]) {
                   highs.splice(j, 0, parseInt(json.scores[i].score));
                   names.splice(j, 0, json.scores[i].name);
@@ -290,7 +296,6 @@ CSC 337 - Final Project
               }
             }
             for(let i = 0; i < Math.min(5, highs.length); i++) {
-              let nameSpan = document.createElement("span");
               scoreP = document.createElement("p");
               scoreP.innerHTML = names[i] +"..........." +  highs[i];
               scoreDiv.appendChild(scoreP);
@@ -300,23 +305,25 @@ CSC 337 - Final Project
             console.log(error);
           });
         }
-
+        /*** stpo for when player loses the game***/
         function stop() {
           document.getElementById("userword").disabled = true;
           sendScore();
           let canvas = document.getElementById("canvas");
           let context = canvas.getContext("2d");
           context.clearRect(0, 0, canvas.width, canvas.height);
-          context.font = "50pt 'Press Start 2P'"
+          context.font = "50pt 'Press Start 2P'";
           context.fillStyle = "#FF0000";
           context.fillText("GAME OVER", 350, 200);
           document.getElementById("startbutton").disabled = false;
           currImg = [];
           validWords = [];
-          clearInterval(timer);
+          clearInterval(timer);//stop timers
           clearInterval(timer2);
         }
-
+        /*** sendUser for posting new players to the webservice
+        @param{json} json
+        handler for sending user on to webservice***/
         function sendUser(json){
           let name = document.getElementById("username").value;
           let password = document.getElementById("password").value;
@@ -334,7 +341,8 @@ CSC 337 - Final Project
           fetch(url, fetchOptions)
           .then(checkStatus)
           .then(function(responseText) {
-            for(let i = 0; i <json["users"].length;i++){
+            console.log(responseText);
+            for(let i = 0; i <json["users"].length; i++){
               if(json["users"][i].name.toUpperCase() == name.toUpperCase()){
                 flag = 1;
               }
@@ -343,16 +351,18 @@ CSC 337 - Final Project
               user = name.toUpperCase();
               showPlay();
             } else{
-              alert("Initials already taken, please try again")
+              alert("Initials already taken, please try again");//already found
             }
           })
           .catch(function(error) {
             console.log(error);
           });
         }
-
+        /*** sendScore for posting new score that player just got
+        @param{json} json
+        handler for sending score on to webservice***/
         function sendScore(json){
-          let flag = 0;
+          console.log(json);
           const message = {name: user, score: currScore};
           const fetchOptions = {
             method : 'POST',
@@ -367,15 +377,16 @@ CSC 337 - Final Project
           .then(checkStatus)
           .then(function(responseText) {
             loadScores();
+            console.log(responseText);
           })
           .catch(function(error) {
             console.log(error);
           });
         }
-
+        /*** showPlay for revealing all divs to play the game***/
         function showPlay(){
           let x = document.querySelectorAll(".hidden");
-          for(let i =0; i<x.length;i++){
+          for(let i =0; i<x.length; i++){
             x[i].style.visibility = "visible";
             x[i].style.width = "auto";
           }
@@ -387,13 +398,11 @@ CSC 337 - Final Project
           document.getElementById("logobottom").style.width = 0+"px";
           elem = document.getElementById("title");
           elem.parentNode.removeChild(elem);
-
-
-
         }
-
         /***returns the response text if the status is in the 200s
-        otherwise rejects the promise with a message including the status***/
+        otherwise rejects the promise with a message including the status
+        *@param{response} response from service
+        *@returns {number} The response ***/
         function checkStatus(response) {
           if (response.status >= 200 && response.status < 300) {
             return response.text();

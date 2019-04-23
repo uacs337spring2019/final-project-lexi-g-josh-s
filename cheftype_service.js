@@ -1,9 +1,10 @@
-// Joshua SIlverio/Lexi Garrabrant
-// CSC 337, Spring 2019
-// Typer's Kitchen
-
-// this web service requires a mode psarameter
-// it provides various info about the game's past plays
+/***
+Joshua Silverio Lexi Garrabrant
+CSc 337
+Final Project
+Description: webservice for webpage called Typer's Kitchen that lets the user
+learn how to type in a fun way.
+***/
 "use strict";
 const express = require("express");
 const app = express();
@@ -26,12 +27,12 @@ app.get('/', function (req, res) {
  let userJson = {};
  let wordList = [];
  let wordJson = {};
- if(mode=="scores"){
+ if(mode=="scores"){//returns a json of name and scores for users
    let scoreFile = fs.readFileSync("files/highscores.txt",'utf8');
    let lines = scoreFile.split("\n");
    for(let i=0; i<lines.length; i++){
      scoreJson = {};
-     let splitLine = lines[i].split(":::");
+     let splitLine = lines[i].split(":::");//parse files
      scoreJson["name"] = splitLine[0];
      scoreJson["score"] = splitLine[1];
      scoreList[i] = scoreJson;
@@ -40,7 +41,7 @@ app.get('/', function (req, res) {
    scoreJson["scores"] = scoreList;//build json of all the elemnts
    res.send(JSON.stringify(scoreJson));
  }
- else if(mode=="users"){
+ else if(mode=="users"){//if we want to return all the user/passwords in json
    let userFile = fs.readFileSync("files/users.txt",'utf8');
    let lines = userFile.split("\n");
    for(let i=0; i<lines.length; i++){
@@ -54,7 +55,7 @@ app.get('/', function (req, res) {
    userJson["users"] = userList;//build json of all the elemnts
    res.send(JSON.stringify(userJson));
  }
- else if(mode=="dictionary") {
+ else if(mode=="dictionary") {//returns json of all valid words to type
    let dictFile = fs.readFileSync("files/dictionary.txt",'utf8');
    let lines = dictFile.split("\n");
    for(let i=0; i<lines.length; i++){
@@ -74,27 +75,27 @@ app.post('/', jsonParser, function (req, res) {
 	res.header("Access-Control-Allow-Origin", "*");
 	let name = req.body.name;
   if(req.body.password != null){
-	let password = req.body.password;
-	fs.appendFile("files/users.txt", "\n"+ name + ":::"+password, function(err) {
-   	if(err) {//append to the file the new comment from the webpage
-			console.log(err);
-			res.status(400);
-   	}
+	let password = req.body.password;//add a new user
+	fs.appendFile("files/users.txt", "\n"+ name + ":::"+password, function(err){
+   	if(err){//append to the file the new comment from the webpage
+      console.log(err);
+      res.status(400);
+    }
    	console.log("The file was saved!");
    	res.send("Success!");
 	});
 }
 else{
-  let score = req.body.score;
-  fs.appendFile("files/highscores.txt", "\n"+ name + ":::"+score, function(err) {
-   	if(err) {//append to the file the new comment from the webpage
+  let score = req.body.score;//post score to the file
+  fs.appendFile("files/highscores.txt", "\n"+ name + ":::"+score, function(err){
+    if(err){//append to the file the new comment from the webpage
 			console.log(err);
 			res.status(400);
-   	}
+    }
    	console.log("The file was saved!");
    	res.send("Success!");
 });
 }
 });
 
-app.listen(3000);
+app.listen(process.env.PORT);

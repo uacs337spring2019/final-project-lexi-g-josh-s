@@ -1,7 +1,9 @@
 /***
-chatit.css file that holds all css elemnts for chatit.html in order to style it.
-Joshua Silverio
-HW7 CSc337
+Joshua Silverio Lexi Garrabrant
+CSc 337
+Final Project
+Description: CSS code for webpage cheftype.html that holds all the styles for
+the game.
 ***/
 body{
   background-color: rgb(78, 75, 78);
@@ -10,56 +12,19 @@ body{
   font-size: 12pt;
   color: white;
 }
-h1{
-  font-size: 56pt;
-}
-h2{
-  font-size: 18pt;
-}
-canvas,#typing input{
-  background-color: rgb(78, 75, 78);
-  color: white;
-}
-
-#playfieldcontainer, #top{
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
 #typing input{
   width: 350px;
   height: 30px;
   font-size: 22pt;
 }
-#typing{
-  text-align: center;
-}
-#container,#typing{
-  margin-left: auto;
-  margin-right: auto;
-}
-#container{
-  display: flex;
-}
-button{
-  color: white;
-  border-radius: 4px;
-  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
-  background-color: rgb(105, 167, 173);
-}
-#loginbar{
-  transition: opacity 1s;
-}
-#login{
-  display: flex;
-  flex-direction: column;
-  opacity: 0;
-  width: 0;
-  height: 0;
+#highscores{
+  font-size: 12pt;
+  border: dashed 3px yellow;
+  padding: 3px;
+  margin-right: 10px;
+  margin: auto;
 }
 #loginclick{
-  display: flex;
-  flex-direction: column;
   width: auto;
   transition: opacity 3s;
   height: auto;
@@ -70,33 +35,58 @@ button{
   border: 0px;
   border-bottom: solid 2px darkgrey;
 }
-#stats {
-  display: flex;
-  flex-direction: column;
-  margin-left: 10pt;
+#login{
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+button{
+  border-radius: 4px;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+  background-color: rgb(105, 167, 173);
+}
+#container,#typing{
+  margin-left: auto;
+  margin-right: auto;
 }
 .hidden{
   visibility: hidden;
   width: 0px;
 }
-#sounddiv{
-  display: flex;
-  flex-direction: column;
-  float: left;
-}
 #sound,#sounddiv p{
   margin: 5px;
   font-size: 4pt;
 }
-#highscores{
-  color: white;
-  font-size: 12pt;
-  border: dashed 3px yellow;
-  padding: 3px;
-  margin-right: 10px;
-  margin: auto;
-
+h1{
+  font-size: 56pt;
 }
-#userword{
-  disabled = disabled;
+h2{
+  font-size: 18pt;
+}
+canvas,#typing input{
+  background-color: rgb(78, 75, 78);
+}
+#typing{
+  text-align: center;
+}
+#loginbar{
+  transition: opacity 1s;
+}
+#stats {
+  margin-left: 10pt;
+}
+#sounddiv{
+  float: left;
+}
+canvas,#typing input,#highscores,button{
+  color: white;
+}
+#playfieldcontainer, #top,#container,#login,#loginclick,#stats,#sounddiv{
+  display: flex;
+}
+#playfieldcontainer, #top,#login,#loginclick,#stats,#sounddiv{
+  flex-direction: column;
+}
+#playfieldcontainer, #top{
+  align-items: flex-start;
 }
