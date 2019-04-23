@@ -119,7 +119,7 @@ learn how to type in a fun way.
               reloadScore();
             }
           }       else if(event.srcElement.id == "password"){//user is loggingin
-            let userUrl = "https://typers-kitchen.herokuapp.com//?mode=users";
+            let userUrl = "https://typers-kitchen.herokuapp.com/?mode=users";
             let username = document.getElementById("username").value;
             if(username.length !=3){
               alert("Please Enter 3 Inittials");//wrong input
